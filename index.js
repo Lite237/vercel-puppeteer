@@ -63,7 +63,7 @@ app.get("/screenshot", async (req, res) => {
         const page = await browser.newPage();
         await page.goto("https://www.google.com");
 
-        await puppeteer.screenchot({
+        await page.screenchot({
             path: "./file.png",
             fullPage: true,
         });
@@ -71,7 +71,7 @@ app.get("/screenshot", async (req, res) => {
         res.sendFile("./file.png");
     } catch (error) {
         res.status(400).json({
-            message: "Invalid url parameter",
+            message: JSON.stringify(error),
         });
     }
 });
