@@ -56,7 +56,10 @@ app.get("/screenshot", async (req, res) => {
         };
     }
     try {
-        const url = new URL(req.url);
+        let browser = await puppeteer.launch(options);
+
+        let page = await browser.newPage();
+        await page.goto("https://www.google.com");
 
         const browser = await puppeteer.launch(options);
 
@@ -71,7 +74,8 @@ app.get("/screenshot", async (req, res) => {
         res.sendFile("./file.png");
     } catch (error) {
         res.status(400).json({
-            message: JSON.stringify(error),
+            error: JSON.stringify(error),
+            message: error.message,
         });
     }
 });
