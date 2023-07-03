@@ -61,7 +61,7 @@ app.get("/screenshot", async (req, res) => {
         let page = await browser.newPage();
         await page.goto("https://www.google.com");
 
-        await page.screenchot({
+        await page.screenschot({
             path: "./file.png",
             fullPage: true,
         });
