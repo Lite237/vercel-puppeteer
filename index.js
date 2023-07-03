@@ -61,11 +61,6 @@ app.get("/screenshot", async (req, res) => {
         let page = await browser.newPage();
         await page.goto("https://www.google.com");
 
-        const browser = await puppeteer.launch(options);
-
-        const page = await browser.newPage();
-        await page.goto("https://www.google.com");
-
         await page.screenchot({
             path: "./file.png",
             fullPage: true,
