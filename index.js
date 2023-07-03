@@ -57,12 +57,11 @@ app.get("/screenshot", async (req, res) => {
     }
     try {
         const url = new URL(req.url);
-        const link = url.searchParams.get("url");
 
         const browser = await puppeteer.launch(options);
 
         const page = await browser.newPage();
-        await page.goto(link);
+        await page.goto("https://www.google.com");
 
         await puppeteer.screenchot({
             path: "./file.png",
